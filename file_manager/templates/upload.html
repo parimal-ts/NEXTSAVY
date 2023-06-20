@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static%}
+{% block title %} File Upload {% endblock %}
+{% block content %}
+  <h1 class="mt-4">File Upload</h1>
+
+  <form id="uploadForm" enctype="multipart/form-data" class="mt-4">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="fileInput">Select File:</label>
+      <input type="file" class="form-control-file" id="fileInput" name="file" />
+    </div>
+    <button type="button" id="uploadBtn" class="btn btn-primary">Upload</button>
+  </form>
+{% endblock %}
+
+{% block js_block %}
+  <script>
+    $(document).ready(function() {
+      $("#uploadBtn").click(function() {
+        var fileInput = $("#fileInput")[0];
+        var file = fileInput.files[0];
+        var formData = new FormData();
+        formData.append("file", file);
+        showLoader();
+        $.ajax({
+          url: "/upload",
+          type: "POST",
+          data: formData,
+          processData: false,
+          contentType: false,
+          headers: {
+            "X-CSRFToken": "{{ csrf_token }}"
+          },
+          success: function(response) {
+            hideLoader();
+            // Handle the response from the server
+            if(response.status_code===200){
+              window.location.href = "{% url 'file-list' %}"
+            } else{
+              alert("Please add a valid file!")
+            }
+            
+          },
+          error: function(xhr, textStatus, errorThrown) {
+            hideLoader()
+            alert("Please add a file")
+
+            // Handle any errors that occur during the AJAX request
+            console.error(xhr.responseText);
+          }
+        });
+      });
+    });
+  </script>
+{% endblock %}

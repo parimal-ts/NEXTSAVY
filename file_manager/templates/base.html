@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css'>
+    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css'>
+    <link rel='stylesheet' href='{% static "css/loader.css" %}'>
+    <style>
+        .box {
+            padding: 20px 10px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% block message %}
+    {% endblock %}
+    <div class="container"> {% block content %} {% endblock %} </div>
+
+    <!-- Loader container start -->
+    <div class="loading-container hide-overlay loading-container" id="loading-container">
+        <div class="spinner"></div>
+    </div>
+    <!-- Loader container end -->
+
+</body>
+<script src='https://code.jquery.com/jquery-3.3.1.js'></script>
+<script src='{% static "js/loader.js" %}'></script>
+<script src='https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js'></script>
+<script src='https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js'></script>
+
+{% block js_block %}
+
+{% endblock %}
+
+</html>
