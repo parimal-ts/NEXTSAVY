@@ -17,35 +17,28 @@ python3 -m venv env
 ```
 #### Step 3(Activate virtual environment)
 ##### For Windows
-#
 ```
 cd NEXTSAVY
 env\Scripts\activate
 ```
 ##### For Linux
-#
 ```
 cd NEXTSAVY
 . env/bin/activate
 ```
-### Step 4(Install requirements.txt)
-#
+#### Step 4(Install requirements.txt)
 ```
 pip install -r requirements.txt
 ```
-### Step 5(Apply migrations)
-#
+#### Step 5(Apply migrations)
 ```
 python manage.py migrate
 ```
-#### Step 5(Run server)
+#### Step 6(Run server)
 #
 ```
 python manage.py runserver
 ```
-#
-#
-#
 ## Project Structure
 
 The project follows a standard Django project structure:
@@ -88,3 +81,7 @@ The project follows a standard Django project structure:
 
 - This project is currently designed for small-size files and may not handle large data files.
 - Performance optimizations and scalability improvements can be considered.
+
+## Public API
+
+- http://localhost:8000/view/<file_id> (Retrieve single file)
