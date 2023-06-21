@@ -85,3 +85,8 @@ The project follows a standard Django project structure:
 ## Public API
 
 - http://localhost:8000/view/<file_id> (Retrieve single file)
+
+## To access UI
+
+- http://localhost:8000/views(list all files)
+
